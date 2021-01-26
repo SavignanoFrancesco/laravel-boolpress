@@ -22,9 +22,9 @@
                             <td>{{$post->id}}</td>
                             <td>{{$post->title}}</td>
                             <td>{{$post->slug}}</td>
-                            <td>{{$post->Content}}</td>
+                            <td>{{$post->content}}</td>
                             <td>
-                                <a href="{{route('admin.posts.index')}}">Show</a>
+                                <a href="#">Show</a>
                             </td>
                         </tr>
                     @endforeach

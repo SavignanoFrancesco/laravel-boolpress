@@ -2,8 +2,10 @@
 @section('content')
     <body>
 
-        <h1>FrontOffice</h1>
-        <h1>view = guest.alternativeView</h1>
+        <div class="container">
+            <h1>FrontOffice</h1>
+            <h1>view = guest.alternativeView</h1>
+        </div>
 
 
 

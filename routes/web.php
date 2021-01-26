@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('index');
 //homepage pubblica
 Route::get('/alternativeView', 'HomeController@alternativeView')->name('alternativeView');
+//visualizzazione posts nel frontoffice
+Route::get('/posts', 'PostController@index')->name('public_posts.index');
+
 
 //registrazione disponibile a tutti
 //Auth::routes();
