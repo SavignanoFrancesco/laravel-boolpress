@@ -83,8 +83,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel-Boolpress-FrontOffice
+                    Laravel-Boolpress
                 </div>
+                <h1>FrontOffice</h1>
                 <h1>view = guest.home</h1>
 
                 {{-- <div class="links">

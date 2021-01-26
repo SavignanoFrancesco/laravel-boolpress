@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboardLayout')
 
 @section('content')
 <div class="container">
@@ -17,8 +17,8 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
-            <h1>view = admin.dashboard</h1>
             <h1>BackOffice</h1>
+            <h1>view = admin.dashboard</h1>
         </div>
     </div>
 </div>
