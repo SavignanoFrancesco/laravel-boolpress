@@ -29,5 +29,7 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->
     //middleware controlla che sia avvenuta l'autenticazione login prima di completare la rotta
     //la rotta home di un utente loggato(admin) è la dashboard
     Route::get('/', 'HomeController@index')->name('dashboard');
+    //rotte del CRUD di posts
+    Route::resource('/posts', 'PostController');
 
 });

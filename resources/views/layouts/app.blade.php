@@ -59,6 +59,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- torna alla dashboard --}}
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                        Dashboard
+                                    </a>
                                     {{-- prevent default, per evitare l'href e quindi eseguire il metodo del form --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
