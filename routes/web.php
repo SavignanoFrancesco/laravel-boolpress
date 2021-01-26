@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 //homepage pubblica
 Route::get('/', 'HomeController@index')->name('index');
 
-Auth::routes();
+//registrazione disponibile a tutti
+//Auth::routes();
+
+//registrazione non disponibile per i visitatori
+Auth::routes(['register' => false]);
 
 //creo un gruppo di rotte con prefisso 'admin.'(rotte che mostrano le views non pubbliche ma dell'autente loggato)
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){

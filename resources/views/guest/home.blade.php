@@ -69,10 +69,11 @@
                 <div class="top-right links">
                     @auth
                         {{-- login effettuato con successo, acesso alla dashboard --}}
-                        <a href="{{ route('admin.dashboard') }}">Home</a>
+                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
+                        {{-- register impostato a false dentro web.php, per impedire la registrazione libera --}}
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
