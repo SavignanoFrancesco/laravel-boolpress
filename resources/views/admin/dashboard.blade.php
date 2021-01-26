@@ -17,6 +17,8 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+            <h1>view = admin.dashboard</h1>
+            <h1>BackOffice</h1>
         </div>
     </div>
 </div>

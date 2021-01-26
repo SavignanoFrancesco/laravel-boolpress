@@ -22,6 +22,6 @@ Auth::routes();
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     //middleware controlla che sia avvenuta l'autenticazione login prima di completare la rotta
     //la rotta home di un utente loggato(admin) è la dashboard
-    Route::get('/home', 'Admin\HomeController@index')->name('dashboard');
+    Route::get('/', 'HomeController@index')->name('dashboard');
 
 });
