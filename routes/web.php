@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 //homepage pubblica
 Route::get('/', 'HomeController@index')->name('index');
+//homepage pubblica
+Route::get('/alternativeView', 'HomeController@alternativeView')->name('alternativeView');
 
 //registrazione disponibile a tutti
 //Auth::routes();

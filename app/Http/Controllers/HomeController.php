@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('guest.home');
     }
+    public function alternativeView()
+    {
+        return view('guest.alternativeView');
+    }
 }
