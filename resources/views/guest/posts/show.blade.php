@@ -10,6 +10,11 @@
                 <h2>[Posts pubblico]</h2>
                 <h3>{{$post->title}}</h3>
                 <p>{{$post->content}}</p>
+                {{-- laravel trova la corrispondenza fra post e categoria (category è la funzione del model Post)--}}
+                {{-- {{dd($post->category)}} --}}
+
+                <p>Category: {{$post->category ? $post->category->name : 'Non disponibile'}}</p>
+
 
         </div>
 
