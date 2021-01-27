@@ -8,4 +8,11 @@ class Post extends Model
 {
     //
     protected $fillable = ['title', 'content', 'notes', 'slug'];
+
+    //relazione per il model
+    public function category(){
+
+        return $this->belongsTo('App\Category');
+
+    }
 }
