@@ -13,6 +13,7 @@
                         <th>Title</th>
                         <th>Slug</th>
                         <th>Content</th>
+                        <th>Category</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                             <td>{{$post->title}}</td>
                             <td>{{$post->slug}}</td>
                             <td>{{$post->content}}</td>
+                            <td>{{$post->category ? $post->category->name : 'Non disponibile'}}</td>
                             <td>
                                 <a href="{{route('admin.posts.show',['post' => $post])}}">Show</a>
                             </td>

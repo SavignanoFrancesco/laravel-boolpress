@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //riferimento al model Post
 use App\Post;
+use App\Category;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
     {
         //
         $data = [
-            'posts' => Post::all()
+            'posts' => Post::all(),
         ];
         return view('admin.posts.index', $data);
     }
@@ -32,7 +33,10 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+        $data = [
+            'categories' => Category::all()
+        ];
+        return view('admin.posts.create', $data);
     }
 
     /**
@@ -103,7 +107,8 @@ class PostController extends Controller
         //
         if($post) {
             $data = [
-                'post' => $post
+                'post' => $post,
+                'categories' => Category::all()
             ];
             return view('admin.posts.edit', $data);
         }
@@ -123,6 +128,7 @@ class PostController extends Controller
     {
         //
         $data = $request->all();
+        //dd($data);
 
 
         //controllo se cè da modificare lo slug
@@ -142,8 +148,8 @@ class PostController extends Controller
             }
             $data['slug'] = $slug;
 
-
         }
+
         $post->update($data);
         return redirect()->route('admin.posts.index')->withSuccess('Update ha funzionato con successo per il post con ID: '.$post->id);
     }

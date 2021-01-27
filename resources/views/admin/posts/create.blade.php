@@ -16,6 +16,20 @@
             <textarea name="content" rows="4" cols="50"></textarea>
         </div>
 
+        <div class="">
+            <label class='col-1'>Category:</label>
+            <select class="" name="category_id">
+                <option value="">
+                    >>Seleziona categoria<<
+                </option>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">
+                        {{$category->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="btn-group">
             <button type="submit" name='submit' value='index_view'>Salva post e visualizza tabella</button>
 
