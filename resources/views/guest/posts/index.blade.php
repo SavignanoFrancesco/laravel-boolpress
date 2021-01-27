@@ -7,10 +7,16 @@
             <h1>view = guest.posts.index</h1>
 
             <h2>[Posts pubblici]</h2>
-            @foreach ($posts as $post)
-                <h3>Title: {{$post->title}}</h3>
-                <p>Content: {{$post->content}}</p>
-            @endforeach
+            <ul>
+                @foreach ($posts as $post)
+                    <li>
+                        <a href='{{route('public_posts.show', ['slug' => $post->slug])}}'>
+                            Title: {{$post->title}}
+                        </a>
+                    </li>
+
+                @endforeach
+            </ul>
         </div>
 
     </body>

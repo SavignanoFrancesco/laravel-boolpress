@@ -19,6 +19,9 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/alternativeView', 'HomeController@alternativeView')->name('alternativeView');
 //visualizzazione posts nel frontoffice
 Route::get('/posts', 'PostController@index')->name('public_posts.index');
+//visualizzazione posts nel frontoffice
+Route::get('/posts/{slug}', 'PostController@show')->name('public_posts.show');
+
 
 
 //registrazione disponibile a tutti
