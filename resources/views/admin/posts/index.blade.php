@@ -27,6 +27,18 @@
                             <td>
                                 <a href="{{route('admin.posts.show',['post' => $post])}}">Show</a>
                             </td>
+                            <td>
+                                <a href="{{route('admin.posts.edit',$post)}}">Edit</a>
+                            </td>
+                            <td>
+                                <form class="d-inline-block" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post">
+                                   @csrf
+                                   @method('DELETE')
+                                   <button type="submit" >
+                                      Destroy
+                                   </button>
+                               </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -50,16 +50,16 @@ class PostController extends Controller
         $post_add->fill($data);
 
         //genero lo slug e faccio in modo che sia univoco
-        $slug = Str::slug($post_add->title);
+        $slug = Str::slug($data['title']);
         $slug_prefix = $slug;
 
-        $post_exists = Post::where('slug', $slug)->first();
+        $slug_exists = Post::where('slug', $slug)->first();
         $counter = 1;
 
-        while($post_exists) {
-            $slug = $slug_prefix . '-' . $counter;
+        while($slug_exists) {
+            $slug = $slug_prefix.'-'.$counter;
             $counter++;
-            $post_exists = Post::where('slug', $slug)->first();
+            $slug_exists = Post::where('slug', $slug)->first();
         }
 
         $post_add->slug = $slug;
@@ -67,10 +67,10 @@ class PostController extends Controller
         $post_add->save();
         //bottone1
         if ($data['submit'] == 'index_view') {
-            return redirect()->route('admin.posts.index')->withSuccess('Store ha funzionato con successo per il post con slug: '.$post_add->slug);
+            return redirect()->route('admin.posts.index')->withSuccess('Store ha funzionato con successo per il post con ID: '.$post_add->id);
         //bottone2
         }else if ($data['submit'] == 'create_view') {
-            return redirect()->route('admin.posts.create')->withSuccess('Store ha funzionato con successo per il post con slug: '.$post_add->slug);
+            return redirect()->route('admin.posts.create')->withSuccess('Store ha funzionato con successo per il post con ID: '.$post_add->id);
         }else{
             abort(404);
         }
@@ -85,6 +85,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+
         if($post) {
             return view('admin.posts.show', ['post' => $post]);
         }
@@ -97,9 +98,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         //
+        if($post) {
+            $data = [
+                'post' => $post
+            ];
+            return view('admin.posts.edit', $data);
+        }
+
+        abort(404);
+
     }
 
     /**
@@ -109,9 +119,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         //
+        $data = $request->all();
+
+
+        //controllo se cè da modificare lo slug
+        if(Str::slug($data['title']) != $post->slug) {
+
+            //generazione slug univoco
+            $slug = Str::slug($data['title']);
+            $slug_prefix = $slug;
+            $post_exists = Post::where('slug', $slug)->first();
+            $counter = 1;
+
+            while($post_exists) {
+                $slug = $slug_prefix.'-'.$counter;
+                $counter++;
+                $post_exists = Post::where('slug', $slug)->first();
+                dd($slug);
+            }
+            $data['slug'] = $slug;
+
+
+        }
+        $post->update($data);
+        return redirect()->route('admin.posts.index')->withSuccess('Update ha funzionato con successo per il post con ID: '.$post->id);
     }
 
     /**
@@ -120,8 +154,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         //
+        $post_ID = $post->id;
+        $post->delete();
+        return redirect()->route('admin.posts.index')->withSuccess('Destroy ha funzionato con successo per il post con ID: '.$post_ID);
     }
 }

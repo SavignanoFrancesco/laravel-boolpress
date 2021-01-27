@@ -8,18 +8,18 @@
 
         @csrf{{-- token --}}
         <div class="">
-            <label>Title</label>
+            <label class='col-1'>Title:</label>
             <input type="text" name="title">
         </div>
         <div class="">
-            <label>Content</label>
+            <label class='col-1'>Content:</label>
             <textarea name="content" rows="4" cols="50"></textarea>
         </div>
 
         <div class="btn-group">
             <button type="submit" name='submit' value='index_view'>Salva post e visualizza tabella</button>
 
-            <button type="submit" name='submit' value='create_view'>Salva post e aggiungine un altro</button>
+            <button type="submit" name='submit' value='create_view' class=''>Salva post e aggiungine un altro</button>
         </div>
     </form>
 </div>
