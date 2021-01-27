@@ -17,6 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <a href="{{route('admin.posts.create')}}">Create(add new post)</a>
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{$post->id}}</td>
@@ -24,7 +25,7 @@
                             <td>{{$post->slug}}</td>
                             <td>{{$post->content}}</td>
                             <td>
-                                <a href="#">Show</a>
+                                <a href="{{route('admin.posts.show',['post' => $post])}}">Show</a>
                             </td>
                         </tr>
                     @endforeach

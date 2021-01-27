@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //riferimento al model Post
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -31,6 +32,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('admin.posts.create');
     }
 
     /**
@@ -42,6 +44,36 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        // dd($data);
+        $post_add = new Post;
+        $post_add->fill($data);
+
+        //genero lo slug e faccio in modo che sia univoco
+        $slug = Str::slug($post_add->title);
+        $slug_prefix = $slug;
+
+        $post_exists = Post::where('slug', $slug)->first();
+        $counter = 1;
+
+        while($post_exists) {
+            $slug = $slug_prefix . '-' . $counter;
+            $counter++;
+            $post_exists = Post::where('slug', $slug)->first();
+        }
+
+        $post_add->slug = $slug;
+
+        $post_add->save();
+        //bottone1
+        if ($data['submit'] == 'index_view') {
+            return redirect()->route('admin.posts.index')->withSuccess('Store ha funzionato con successo per il post con slug: '.$post_add->slug);
+        //bottone2
+        }else if ($data['submit'] == 'create_view') {
+            return redirect()->route('admin.posts.create')->withSuccess('Store ha funzionato con successo per il post con slug: '.$post_add->slug);
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -50,9 +82,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
         //
+        if($post) {
+            return view('admin.posts.show', ['post' => $post]);
+        }
+       abort(404);
     }
 
     /**
