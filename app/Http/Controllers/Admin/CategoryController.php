@@ -101,7 +101,7 @@ class CategoryController extends Controller
         if($category) {
             $data = [
                 'category' => $category,
-                'user_mistake' => true
+                'user_mistake' => false
             ];
             return view('admin.categories.edit', $data);
         }
