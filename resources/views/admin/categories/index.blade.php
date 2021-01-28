@@ -23,12 +23,12 @@
                             <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td>{{$category->slug}}</td>
+                            <td>
+                                <a href="{{route('admin.categories.edit',$category)}}">Edit</a>
+                            </td>
 
                             {{-- <td>
                                 <a href="{{route('admin.categories.show',['post' => $post])}}">Show</a>
-                            </td>
-                            <td>
-                                <a href="{{route('admin.categories.edit',$post)}}">Edit</a>
                             </td>
                             <td>
                                 <form class="d-inline-block" action="{{ route('admin.categories.destroy', ['post' => $post->id]) }}" method="post">

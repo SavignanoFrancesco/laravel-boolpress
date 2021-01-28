@@ -144,7 +144,7 @@ class PostController extends Controller
                 $slug = $slug_prefix.'-'.$counter;
                 $counter++;
                 $post_exists = Post::where('slug', $slug)->first();
-                dd($slug);
+                // dd($slug);
             }
             $data['slug'] = $slug;
 

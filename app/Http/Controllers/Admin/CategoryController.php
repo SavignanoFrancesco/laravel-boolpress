@@ -32,7 +32,10 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('admin.categories.create');
+        $data = [
+            'user_mistake' => false
+        ];
+        return view('admin.categories.create', $data);
     }
 
     /**
@@ -47,34 +50,31 @@ class CategoryController extends Controller
         //
         $data = $request->all();
         // dd($data);
-        // dd($data);
         $category_add = new Category;
+
+        $slug = Str::slug($data['name']);
+        $data['slug'] = $slug;
+        // dd($data);
         $category_add->fill($data);
 
-        //genero lo slug e faccio in modo che sia univoco
-        $slug = Str::slug($data['name']);
-        $slug_prefix = $slug;
-
-        $slug_exists = Category::where('slug', $slug)->first();
-        $counter = 1;
-
-        while($slug_exists) {
-            $slug = $slug_prefix.'-'.$counter;
-            $counter++;
-            $slug_exists = Category::where('slug', $slug)->first();
-        }
-
-        $category_add->slug = $slug;
-
-        $category_add->save();
-        //bottone1
-        if ($data['submit'] == 'index_view') {
-            return redirect()->route('admin.categories.index')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
-        //bottone2
-        }else if ($data['submit'] == 'create_view') {
-            return redirect()->route('admin.categories.create')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
-        }else{
-            abort(404);
+        if (Category::where('slug', $slug)->first()) {
+            // code...
+            $data = [
+                'user_mistake' => true
+            ];
+            return view('admin.categories.create', $data);
+        }else {
+            // code...
+            $category_add->save();
+            //bottone1
+            if ($data['submit'] == 'index_view') {
+                return redirect()->route('admin.categories.index')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
+                //bottone2
+            }else if ($data['submit'] == 'create_view') {
+                return redirect()->route('admin.categories.create')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
+            }else{
+                abort(404);
+            }
         }
     }
 
@@ -95,9 +95,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+
+        if($category) {
+            $data = [
+                'category' => $category,
+                'user_mistake' => true
+            ];
+            return view('admin.categories.edit', $data);
+        }
+
+        abort(404);
     }
 
     /**
@@ -107,9 +116,28 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
         //
+        //
+        $data = $request->all();
+        //dd($data);
+        $slug = Str::slug($data['name']);
+        $data['slug'] = $slug;
+
+        //controllo se cè da modificare lo slug
+        if( Category::where('slug', $slug)->first()) {
+
+            $data = [
+                'category' => $category,
+                'user_mistake' => true
+            ];
+            return view('admin.categories.edit', $data);
+
+        }
+
+        $category->update($data);
+        return redirect()->route('admin.categories.index')->withSuccess('Update ha funzionato con successo per la categoria con ID: '.$category->id);
     }
 
     /**

@@ -7,6 +7,11 @@
     <form id='form' action="{{route('admin.categories.store')}}" method="post">
 
         @csrf{{-- token --}}
+
+        @if($user_mistake)
+            <h2>La categoria che hai provato a inserire esiste già</h2>
+        @endif
+
         <div class="">
             <label class='col-1'>Name:</label>
             <input type="text" name="name">
