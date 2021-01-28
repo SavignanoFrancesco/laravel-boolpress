@@ -32,6 +32,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('admin.categories.create');
     }
 
     /**
@@ -43,6 +44,38 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        //
+        $data = $request->all();
+        // dd($data);
+        // dd($data);
+        $category_add = new Category;
+        $category_add->fill($data);
+
+        //genero lo slug e faccio in modo che sia univoco
+        $slug = Str::slug($data['name']);
+        $slug_prefix = $slug;
+
+        $slug_exists = Category::where('slug', $slug)->first();
+        $counter = 1;
+
+        while($slug_exists) {
+            $slug = $slug_prefix.'-'.$counter;
+            $counter++;
+            $slug_exists = Category::where('slug', $slug)->first();
+        }
+
+        $category_add->slug = $slug;
+
+        $category_add->save();
+        //bottone1
+        if ($data['submit'] == 'index_view') {
+            return redirect()->route('admin.categories.index')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
+        //bottone2
+        }else if ($data['submit'] == 'create_view') {
+            return redirect()->route('admin.categories.create')->withSuccess('Store ha funzionato con successo per la categoria con ID: '.$category_add->id);
+        }else{
+            abort(404);
+        }
     }
 
     /**
