@@ -37,5 +37,7 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->
     Route::get('/', 'HomeController@index')->name('dashboard');
     //rotte del CRUD di posts
     Route::resource('/posts', 'PostController');
+    //rotte del CRUD di categories
+    Route::resource('/categories', 'CategoryController');
 
 });
