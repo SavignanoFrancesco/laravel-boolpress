@@ -30,6 +30,20 @@
             </select>
         </div>
 
+        <div class="form-group d-flex">
+            <label class='col-1'>Seleziona i tag:</label>
+            <div class="d-flex flex-column">
+                @foreach ($tags as $tag)
+                    <div class="form-check ml-1 d-flex flex-column">
+                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id }}">
+                        <label class="form-check-label">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         <div class="btn-group">
             <button type="submit" name='submit' value='index_view'>Salva post e visualizza tabella</button>
 

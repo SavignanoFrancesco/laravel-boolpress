@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //riferimento al model Post
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -34,7 +35,8 @@ class PostController extends Controller
     {
         //
         $data = [
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'tags' => Tag::all()
         ];
         return view('admin.posts.create', $data);
     }
@@ -69,6 +71,9 @@ class PostController extends Controller
         $post_add->slug = $slug;
 
         $post_add->save();
+
+        $post_add->tags()->sync($data['tags']);
+
         //bottone1
         if ($data['submit'] == 'index_view') {
             return redirect()->route('admin.posts.index')->withSuccess('Store ha funzionato con successo per il post con ID: '.$post_add->id);

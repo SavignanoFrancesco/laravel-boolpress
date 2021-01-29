@@ -18,11 +18,18 @@
                 <dd>{{$post->category ? $post->category->name : 'Non disponibile'}}</dd>
                 <dt>Tags:</dt>
                 <dd>
-                    @forelse ($post->tags as $tag)
-                        {{$tag->name}}{{!$loop->last ? ',' : '.'}}
-                    @empty
-                        Nessun tag per questo post
-                    @endforelse
+
+                    <div class="d-flex flex-column">
+                        @forelse ($post->tags as $tag)
+                            <div class="">
+                                {{$tag->name}}
+                                {{-- {{!$loop->last ? ',' : '.'}} --}}
+                            </div>
+                        @empty
+                            Nessun tag per questo post
+                        @endforelse
+                    </div>
+
                 </dd>
 
 
