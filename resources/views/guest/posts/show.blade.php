@@ -25,7 +25,10 @@
                 </p>
                 <p>Tags:
                     @forelse ($post->tags as $tag)
-                        {{$tag->name}}{{!$loop->last ? ',' : '.'}}
+                        <a href="{{route('tag_posts.show', ['slug' => $tag->slug])}}">
+                            {{$tag->name}}
+                        </a>
+                        {{!$loop->last ? ',' : '.'}}
                     @empty
                         Nessun tag per questo post
                     @endforelse

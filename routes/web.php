@@ -23,6 +23,8 @@ Route::get('/posts', 'PostController@index')->name('public_posts.index');
 Route::get('/posts/{slug}', 'PostController@show')->name('public_posts.show');
 //visualizzazione posts associati ad una categoria nel frontoffice
 Route::get('/category-posts/{slug}', 'CategoryController@show')->name('category_posts.show');
+//visualizzazione posts associati ad una categoria nel frontoffice
+Route::get('/tag-posts/{slug}', 'TagController@show')->name('tag_posts.show');
 
 
 
