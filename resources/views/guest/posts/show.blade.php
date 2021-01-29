@@ -23,6 +23,9 @@
                         Non disponibile
                     @endif
                 </p>
+                <p>Tags:
+                    
+                </p>
 
 
         </div>
