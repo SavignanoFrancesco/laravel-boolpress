@@ -21,6 +21,8 @@ Route::get('/alternativeView', 'HomeController@alternativeView')->name('alternat
 Route::get('/posts', 'PostController@index')->name('public_posts.index');
 //visualizzazione posts nel frontoffice
 Route::get('/posts/{slug}', 'PostController@show')->name('public_posts.show');
+//visualizzazione posts associati ad una categoria nel frontoffice
+Route::get('/category-posts/{slug}', 'CategoryController@show')->name('category_posts.show');
 
 
 
