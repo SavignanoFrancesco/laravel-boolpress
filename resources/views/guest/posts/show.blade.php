@@ -24,7 +24,11 @@
                     @endif
                 </p>
                 <p>Tags:
-                    
+                    @forelse ($post->tags as $tag)
+                        {{$tag->name}}{{!$loop->last ? ',' : '.'}}
+                    @empty
+                        Nessun tag per questo post
+                    @endforelse
                 </p>
 
 
