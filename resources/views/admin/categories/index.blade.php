@@ -30,15 +30,16 @@
                             {{-- <td>
                                 <a href="{{route('admin.categories.show',['post' => $post])}}">Show</a>
                             </td>
+                            --}}
                             <td>
-                                <form class="d-inline-block" action="{{ route('admin.categories.destroy', ['post' => $post->id]) }}" method="post">
+                                <form class="d-inline-block" action="{{ route('admin.categories.destroy', ['category' => $category->id]) }}" method="post">
                                    @csrf
                                    @method('DELETE')
                                    <button type="submit" >
                                       Destroy
                                    </button>
                                </form>
-                            </td> --}}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

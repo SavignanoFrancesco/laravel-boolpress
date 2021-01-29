@@ -5,7 +5,7 @@
         <div class="container">
 
                 <h1>FrontOffice</h1>
-                <h1>view = guest.categoriy_posts.show</h1>
+                <h1>view = guest.category_posts.show</h1>
 
 
                 <h2>Category:{{$category->name}}</h2>
