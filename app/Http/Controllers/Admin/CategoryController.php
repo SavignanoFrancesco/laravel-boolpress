@@ -125,7 +125,7 @@ class CategoryController extends Controller
         $slug = Str::slug($data['name']);
         $data['slug'] = $slug;
 
-        //controllo se cè da modificare lo slug
+        //controllo se esiste già la categoria
         if( Category::where('slug', $slug)->first()) {
 
             $data = [
