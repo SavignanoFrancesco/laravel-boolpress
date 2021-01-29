@@ -16,6 +16,16 @@
                 <dd>{{ $post->content }}</dd>
                 <dt>Category</dt>
                 <dd>{{$post->category ? $post->category->name : 'Non disponibile'}}</dd>
+                <dt>Tags:</dt>
+                <dd>
+                    @forelse ($post->tags as $tag)
+                        {{$tag->name}}{{!$loop->last ? ',' : '.'}}
+                    @empty
+                        Nessun tag per questo post
+                    @endforelse
+                </dd>
+
+
             </dl>
         </div>
     </div>
