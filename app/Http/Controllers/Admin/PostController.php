@@ -113,7 +113,8 @@ class PostController extends Controller
         if($post) {
             $data = [
                 'post' => $post,
-                'categories' => Category::all()
+                'categories' => Category::all(),
+                'tags' => Tag::all()
             ];
             return view('admin.posts.edit', $data);
         }
@@ -156,6 +157,9 @@ class PostController extends Controller
         }
 
         $post->update($data);
+
+        $post->tags()->sync($data['tags']);
+
         return redirect()->route('admin.posts.index')->withSuccess('Update ha funzionato con successo per il post con ID: '.$post->id);
     }
 
