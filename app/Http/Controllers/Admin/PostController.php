@@ -173,6 +173,7 @@ class PostController extends Controller
     {
         //
         $post_ID = $post->id;
+        $post->tags()->sync([]);
         $post->delete();
         return redirect()->route('admin.posts.index')->withSuccess('Destroy ha funzionato con successo per il post con ID: '.$post_ID);
     }
