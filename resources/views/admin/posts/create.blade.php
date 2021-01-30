@@ -35,7 +35,7 @@
             <div class="d-flex flex-column">
                 @foreach ($tags as $tag)
                     <div class="form-check ml-1 d-flex flex-column">
-                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id }}">
+                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id ? '$tag->id' : ''  }}">
                         <label class="form-check-label">
                             {{ $tag->name }}
                         </label>

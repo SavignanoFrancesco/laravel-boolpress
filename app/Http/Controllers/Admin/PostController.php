@@ -72,7 +72,12 @@ class PostController extends Controller
 
         $post_add->save();
 
-        $post_add->tags()->sync($data['tags']);
+        if (array_key_exists("tags",$data)) {
+            // code...
+            $post_add->tags()->sync($data['tags']);
+        }else{
+            $post_add->tags()->sync([]);
+        }
 
         //bottone1
         if ($data['submit'] == 'index_view') {
@@ -158,7 +163,13 @@ class PostController extends Controller
 
         $post->update($data);
 
-        $post->tags()->sync($data['tags']);
+
+        if (array_key_exists("tags",$data)) {
+            // code...
+            $post->tags()->sync($data['tags']);
+        }else{
+            $post->tags()->sync([]);
+        }
 
         return redirect()->route('admin.posts.index')->withSuccess('Update ha funzionato con successo per il post con ID: '.$post->id);
     }
