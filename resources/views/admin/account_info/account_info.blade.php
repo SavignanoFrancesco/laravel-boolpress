@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1>Account info</h1>
+            <h1>BackOffice</h1>
+            <h1>view = admin.account_info.account_info</h1>
             <div class="card">
-                <h1>Account info</h1>
-                <h1>BackOffice</h1>
-                <h1>view = admin.account_info.account_info</h1>
 
                 <div class="card-body">
                     <dl>
