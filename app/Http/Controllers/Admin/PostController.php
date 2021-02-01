@@ -53,7 +53,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'category_id' => 'exists:categories,id',
+            'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
         ]);
 
@@ -145,11 +145,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
-        //validazione della richiesta 
+        //validazione della richiesta
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'category_id' => 'exists:categories,id',
+            'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
         ]);
 
