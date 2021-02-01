@@ -49,7 +49,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validazione della richiesta
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'exists:categories,id',
+            'tags' => 'exists:tags,id',
+        ]);
+
         $data = $request->all();
         // dd($data);
         $post_add = new Post;
@@ -137,6 +144,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        //validazione della richiesta 
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'exists:categories,id',
+            'tags' => 'exists:tags,id',
+        ]);
+
         //
         $data = $request->all();
         //dd($data);

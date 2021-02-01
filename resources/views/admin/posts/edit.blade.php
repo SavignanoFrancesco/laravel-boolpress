@@ -7,6 +7,19 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h1>Edit post {{ $post->id }}</h1>
             </div>
+
+            <div class="">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+
             <form action="{{route('admin.posts.update' , ['post' => $post->id])}}" method="POST">
                 @csrf
                 @method('PUT')

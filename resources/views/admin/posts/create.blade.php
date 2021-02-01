@@ -3,7 +3,20 @@
 @section('content')
 <div class="">
     @include('partials.success')
-    <h1>Inserisci nuovo prodotto(riga della tabella products)</h1>
+    <h1>Inserisci nuovo post(riga della tabella posts)</h1>
+
+    <div class="">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
     <form id='form' action="{{route('admin.posts.store')}}" method="post">
 
         @csrf{{-- token --}}
