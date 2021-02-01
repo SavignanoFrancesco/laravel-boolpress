@@ -43,5 +43,9 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->
     Route::resource('/posts', 'PostController');
     //rotte del CRUD di categories
     Route::resource('/categories', 'CategoryController');
+    //rotta per info account con bottone per generazione api_token
+    Route::get('/account-info', 'HomeController@accountInfo')->name('account_info');
+    //rotta del bottone che genera l'api_token
+    Route::post('/account-info/token-generator', 'HomeController@tokenGenerator')->name('token_generator');
 
 });

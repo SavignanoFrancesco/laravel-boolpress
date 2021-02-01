@@ -75,6 +75,11 @@
                               Tags
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.account_info')}}">
+                                Account Info
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
