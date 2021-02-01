@@ -23,10 +23,20 @@
         <div class="">
             <label class='col-1'>Title:</label>
             <input type="text" name="title" value="{{old('title')}}">
+            {{--
+            @error('title')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            --}}
         </div>
         <div class="">
             <label class='col-1'>Content:</label>
             <textarea name="content" rows="4" cols="50">{{old('content')}}</textarea>
+            {{--
+            @error('content')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            --}}
         </div>
 
         <div class="">
@@ -41,6 +51,11 @@
                     </option>
                 @endforeach
             </select>
+            {{--
+            @error('category_id')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            --}}
         </div>
 
         <div class="form-group d-flex">
@@ -55,6 +70,11 @@
                     </div>
                 @endforeach
             </div>
+            {{--
+            @error('tags')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            --}}
         </div>
 
         <div class="btn-group">

@@ -25,11 +25,11 @@
                 @method('PUT')
                 <div class="">
                     <label class='col-1'>Title:</label>
-                    <input type="text" name="title" value="{{$post->title}}">
+                    <input type="text" name="title" value="{{ old('title', $post->title) }}">
                 </div>
                 <div class="">
                     <label class='col-1'>Content:</label>
-                    <textarea  name="content" rows="4" cols="50" required>{{ $post->content }}</textarea>
+                    <textarea  name="content" rows="4" cols="50">{{ old('content',$post->content) }}</textarea>
                 </div>
 
                 <div class="">
@@ -39,7 +39,7 @@
                             Non disponibile
                         </option>
                         @foreach ($categories as $category)
-                            <option value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected=selected' : ''}}>
+                            <option value="{{$category->id}}"  {{ $category->id == old('category_id', $post->category_id) ? 'selected=selected' : '' }}>
                                 {{$category->name}}
                             </option>
                         @endforeach
@@ -51,7 +51,13 @@
                     <div class="d-flex flex-column">
                         @foreach ($tags as $tag)
                             <div class="form-check ml-1 d-flex flex-column">
-                                <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" {{$post->tags->contains($tag) ? 'checked=checked' : ''}}>
+                                {{-- se ci sono errori di validazione --}}
+                                @if ($errors->any())
+                                    <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" {{in_array($tag->id, old('tags',[])) ? 'checked=checked' : ''}}>
+                                    <label class="form-check-label">
+                                @else
+                                    <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" {{$post->tags->contains($tag) ? 'checked=checked' : ''}}>
+                                @endif
                                 <label class="form-check-label">
                                     {{ $tag->name }}
                                 </label>
