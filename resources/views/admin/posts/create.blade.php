@@ -22,11 +22,11 @@
         @csrf{{-- token --}}
         <div class="">
             <label class='col-1'>Title:</label>
-            <input type="text" name="title">
+            <input type="text" name="title" value="{{old('title')}}">
         </div>
         <div class="">
             <label class='col-1'>Content:</label>
-            <textarea name="content" rows="4" cols="50"></textarea>
+            <textarea name="content" rows="4" cols="50">{{old('content')}}</textarea>
         </div>
 
         <div class="">
@@ -36,7 +36,7 @@
                     >>Seleziona categoria<<
                 </option>
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}}">
+                    <option value="{{$category->id}}" {{old('category_id')==$category->id ? 'selected=selected' : ''}}>
                         {{$category->name}}
                     </option>
                 @endforeach
@@ -48,7 +48,7 @@
             <div class="d-flex flex-column">
                 @foreach ($tags as $tag)
                     <div class="form-check ml-1 d-flex flex-column">
-                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id ? '$tag->id' : ''  }}">
+                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" {{in_array($tag->id, old('tags',[])) ? 'checked=checked' : ''}}>
                         <label class="form-check-label">
                             {{ $tag->name }}
                         </label>
